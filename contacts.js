@@ -1,11 +1,12 @@
 const path = require("path");
-const { readContacts, writeContacts } = reqiure("./func.js");
+const { readContacts, writeContacts } = require("./func.js");
 
 const contactsPath = path.resolve(__dirname, "./db/contacts.json");
 
 async function listContacts() {
   try {
-    await readContacts(contactsPath);
+    const res = await readContacts(contactsPath);
+    return res;
   } catch (err) {
     console.error(err.message);
   }
@@ -18,20 +19,20 @@ async function getContactById(contactId) {
     if (contactById) {
       return contactById;
     }
-    return `There are no contact with ID:${contactId}`;
+    console.log(`There are no contact with ID:${contactId}`);
   } catch (err) {
     console.error(err.message);
   }
 }
 
 async function removeContact(contactId) {
+  const contacts = await readContacts(contactsPath);
+  const filteredContacts = contacts.filter(
+    (contact) => contact.id !== contactId
+  );
+  await fs.writeFile(contactsPath, JSON.stringify(filteredContacts));
   try {
-    const contacts = await readContacts(contactsPath);
-    const contactById = contacts.filter((contact) => contact.id !== contactId);
-    if (contactById) {
-      return contactById;
-    }
-    return `Contact with ID:${contactId} was deleted`;
+    console.log(`Contact with ID:${contactId} was deleted`);
   } catch (err) {
     console.error(err.message);
   }

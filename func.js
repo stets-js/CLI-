@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 const fs = require("fs");
 
 async function readContacts(path) {
@@ -8,7 +7,7 @@ async function readContacts(path) {
 }
 
 async function writeContacts(contactsPath, { name, email, phone }) {
-  const contactNew = { id: nanoid(), name, email, phone };
+  const contactNew = { id: Date.now(), name, email, phone };
   const contacts = readContacts(contactsPath);
   const contactsList = JSON.stringify([contactNew, ...contacts]);
   await fs.writeFile(contactsPath, contactsList);
