@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "start": "node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/stets-js/cli-application#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.0"
   }
 }
