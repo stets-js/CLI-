@@ -1,9 +1,5 @@
 const { readContacts, writeContacts } = require("./func.js");
 
-const fs = require("fs").promises;
-const path = require("path");
-const contactsPath = path.resolve(__dirname, "./db/contacts.json");
-
 async function listContacts() {
   try {
     const res = await readContacts();
