@@ -8,12 +8,9 @@ async function readContacts() {
   return contacts;
 }
 
-async function writeContacts(name, email, phone) {
-  const contactNew = { id: Date.now().toString(), name, email, phone };
-  const contacts = await readContacts();
-  const contactsList = JSON.stringify([contactNew, ...contacts]);
-  await fs.writeFile(contactsPath, contactsList);
-  return contactsList;
+async function writeContacts(data) {
+  let result = await fs.writeFile(contactsPath, JSON.stringify(data));
+  return result;
 }
 
 module.exports = {
