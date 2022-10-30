@@ -17,7 +17,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 
     case "get":
       await getContactById(id).then((value) => {
-        console.log(value);
+        console.table(value);
       });
       break;
 
